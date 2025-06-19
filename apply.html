@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>E-portfolio</title>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Override email input size */
+#emailInput {
+  width: 250px;  
+  max-width: 100%; 
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #C4D1FA;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+/* Styles for nav links */
+nav a {
+  color: black;
+  margin: 0 15px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: normal;
+  transition: font-size 0.3s ease;
+}
+
+/* Enlarged nav links for accessibility */
+nav.large a {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Accessibility button style */
+#accessibility-button {
+  margin: 10px 0;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<center>
+
+<img src="images/Logo.png" width="375" height="300">
+<br>
+
+<button id="accessibility-button" aria-pressed="false" aria-label="Toggle navigation size">
+   Enlarge navigation buttons
+</button>
+
+<nav id="navbar">
+  <a href="index.html">Home</a>
+  <a href="profiles.html">Employee Profiles</a>
+  <a href="courses.html">Courses</a>
+  <a href="apply.html">Applications</a>
+  <a href="vacancies.html">Vacancies</a>
+</nav>
+
+</center>
+<br>
+<br>
+<br>
+
+<div class="insideBody"> 
+<h2>Applying to Ozzy's Developement:</h2>
+<p>.</p>													
+
+<div class="container">
+   <form action="apply.html" onsubmit="return validateForm()">
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">First Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="firstname" placeholder="Your name.." >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Last Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Your last name.." >
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-25">
+      <label for="emailInput">Email:</label>
+    </div>
+    <div class="col-75">
+      <input type="email" id="emailInput" oninput="validateEmailInput()">
+      <span id="emailFeedback" style="color: red;"></span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-25">
+      <label for="County">County</label>
+    </div>
+    <div class="col-75">
+      <select id="country" name="country">
+        <option value="Oxford">Oxford</option>
+        <option value="Exeter">Exeter</option>
+        <option value="London">London</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subject">Subject</label>
+    </div>
+    <div class="col-75">
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <input type="submit" value="Submit">
+  </div>
+  </form>
+</div>
+
+</div>
+<script>
+
+
+
+
+
+
+
+
+<script>
+function validateEmailInput() {
+  const emailInput = document.getElementById('emailInput').value;
+  const fname= document.getElementById('fname').value;
+  const feedbackElement = document.getElementById('emailFeedback');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (emailRegex.test(emailInput)) {
+    feedbackElement.textContent = ""; 
+  } else {
+    feedbackElement.textContent = "Please enter a valid email address.";
+  }
+}
+
+const accessibilityButton = document.getElementById('accessibility-button');
+const navbar = document.getElementById('navbar');
+
+accessibilityButton.addEventListener('click', () => {
+  const isLarge = navbar.classList.toggle('large');
+  accessibilityButton.setAttribute('aria-pressed', isLarge);
+});
+</script>
+
+<script>
+function validateForm() {
+  // Get form field values
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('emailInput').value.trim();
+  const country = document.getElementById('country').value;
+  const subject = document.getElementById('subject').value.trim();
+
+  // Check if any required field is empty
+  if (!fname) {
+    alert('Please enter your First Name.');
+    return false;  // Prevent form submission
+  }
+  if (!lname) {
+    alert('Please enter your Last Name.');
+    return false;
+  }
+  if (!email) {
+    alert('Please enter your Email.');
+    return false;
+  }
+  // Optional: you can also check if the email is valid format here (or rely on your existing validation)
+  if (!country) {
+    alert('Please select your County.');
+    return false;
+  }
+  if (!subject) {
+    alert('Please enter a Subject.');
+    return false;
+  }
+  
+  // If all checks pass, allow form submission
+  return true;
+}
+</script>
+</body>
+</html>
