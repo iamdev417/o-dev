@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E-portfolio</title>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <style>
+    /* Basic styling for nav links */
+    nav a {
+      color: black;
+      margin: 0 12px;
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: normal;
+      transition: font-size 0.3s ease;
+    }
+
+    nav.large a {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #accessibility-button {
+      margin: 10px 0;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .hello-text {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Layout for image and text side by side */
+    .content-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .content-wrapper img {
+      max-width: 300px;
+      height: auto;
+    }
+
+    .content-text {
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .content-text strong {
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .content-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<center>
+
+  <img src="images/Logo.png" width="375" height="300">
+  <br>
+
+  <button id="accessibility-button" aria-pressed="false" aria-label="Toggle navigation size">
+    Enlarge navigation buttons
+  </button>
+
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="profiles.html">Employee Profiles</a>
+    <a href="courses.html">Courses</a>
+    <a href="apply.html">Applications</a>
+    <a href="vacancies.html">Vacancies</a>
+  </nav>
+
+</center>
+
+<br><br><br>
+
+<div class="insideBody">
+  <h1 class="hello-text">Ozzy's Developement</h1>
+
+  <div class="content-wrapper">
+    <img src="images/Building.png" alt="Ozzy's Dev Building">
+
+    <div class="content-text">
+      <strong>Ozzy's web developement</strong> is a company which helps other businesses create modern and easy-to-use websites. We focus on creating websites that showcase company pages and online stores, featuring elements such as product graphics and information points with brief descriptions.<br><br>
+
+      At Ozzy's Development, we are driven to find junior website developers who are eager to gain key experience. You'll get exposure to high-end website development alongside our highly experienced team.<br><br>
+
+      We are looking for web developers who are ready to work hard and grow with the company. If you think you'd thrive in this environment, be sure to check out the <strong>Vacancies</strong> page!
+    </div>
+  </div>
+</div>
+
+<script>
+  const accessibilityButton = document.getElementById('accessibility-button');
+  const navbar = document.getElementById('navbar');
+
+  accessibilityButton.addEventListener('click', () => {
+    const isLarge = navbar.classList.toggle('large');
+    accessibilityButton.setAttribute('aria-pressed', isLarge);
+  });
+</script>
+
+</body>
+</html>
+
+
